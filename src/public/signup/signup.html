@@ -68,9 +68,19 @@
       Firstname: {{ reg.user.firstname}} <br>
       Lastname: {{ reg.user.lastname}} <br>
       Email: {{ reg.user.email}} <br>
-      <a ui-sref="public.myinfo({favItem:reg.user.favitem})">Item: {{ reg.user.favitem}} <br></a>
-     
-      Phone: {{ reg.user.phone }}
+      Phone: {{ reg.user.phone }}<br>
+
+      <div> <a ui-sref="public.myinfo({favItem:reg.user.favitem})">Item: {{ reg.user.favitem}}</a>
+        <span style="color:red"; ng-if="reg.item===0">
+          No such menu number exists!
+        </span>
+        <span style="color:green"; ng-if="reg.item !== 0">
+        Your information has been saved.
+        </span>
+    </div>
+    
+
+   
      
     </div>
 
