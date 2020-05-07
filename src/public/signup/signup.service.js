@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('public')
+    angular.module('common')
     .service('SignUpService', SignUpService)
     
  

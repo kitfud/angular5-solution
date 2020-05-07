@@ -3,8 +3,7 @@
     <fieldset>
       <legend style="color:red">Registration</legend>
       <form name='regForm' novalidate>
-         {{SignUpService.data}} 
-
+         
         <input type="text" name="firstname" placeholder="Enter first name"
           ng-model="reg.user.firstname"
           required
@@ -69,8 +68,10 @@
       Firstname: {{ reg.user.firstname}} <br>
       Lastname: {{ reg.user.lastname}} <br>
       Email: {{ reg.user.email}} <br>
-      Item: {{ reg.user.favitem}} <br>
+      <a ui-sref="public.myinfo({favItem:reg.user.favitem})">Item: {{ reg.user.favitem}} <br></a>
+     
       Phone: {{ reg.user.phone }}
+     
     </div>
 
   </div>

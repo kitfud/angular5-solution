@@ -2,10 +2,16 @@
     angular.module('common')
     .controller('InfoController', InfoController)
     
-    InfoController.$inject=['SignUpService']
-    function InfoController(SignUpService) {
-      var info = this;
-      info.data = SignUpService.data;
+    InfoController.$inject=['SignUpService','menuItems']
+    function InfoController(SignUpService, menuItems) {
+      var $ctrl = this;
+      $ctrl.menuItems = menuItems;
+
+      console.log($ctrl.menuItems);
+
+      $ctrl.data = SignUpService.data;
+     
+    
 
   
     

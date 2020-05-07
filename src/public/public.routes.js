@@ -51,9 +51,15 @@ function routeConfig ($stateProvider) {
     })
 
     .state('public.myinfo', {
-      url: '/myinfo',
+      url: '/myinfo/{favItem}',
       templateUrl: 'src/public/myinfo/info.html',
-      controller: 'InfoController as $ctrl'
+      controller: 'InfoController as $ctrl',
+
+      resolve: {
+        menuItems: ['MenuService','SignUpService', function (MenuService,SignUpService) {
+          return MenuService.getMenuItem(SignUpService.data.favItem)
+        }]
+      }
 
    
    

@@ -1,7 +1,16 @@
+<div>Your Saved Information:</div>
+
 {{$ctrl.data.firstName}} <br>
 {{$ctrl.data.lastName}}<br>
 {{$ctrl.data.email}}<br>
 {{$ctrl.data.favItem}}<br>
 {{$ctrl.data.phoneNumber}}<br>
 
+<hr>
+<div>Items you may like:</div>
+<ul>
+  <li ng-repeat="item in $ctrl.menuItems.menu_items">
+    {{ item.name }}: {{item.description}} <br>
+  </li>
+</ul>
 
