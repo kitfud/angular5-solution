@@ -1,16 +1,41 @@
-<div>Your Saved Information:</div>
 
-{{$ctrl.data.firstName}} <br>
-{{$ctrl.data.lastName}}<br>
-{{$ctrl.data.email}}<br>
-{{$ctrl.data.favItem}}<br>
-{{$ctrl.data.phoneNumber}}<br>
+<div ng-if= '$ctrl.data.favItem ==undefined'>
+Not Signed Up Yet. <a ui-sref ='public.signup'>Sign up Now!</a>
+</div>
+
+
+<div class="container-fluid"; ng-if= '$ctrl.data.favItem !==undefined'>
+
+    <div style="color:green">Saved Information! <em>Note: recorded from a previous "successful" save in the <a ui-sref ='public.signup'>"Sign Up" </a> tab</em></div>
+<hr>
+First Name: <em>{{$ctrl.data.firstName}} </em> <br>
+Last Name: <em>{{$ctrl.data.lastName}} </em><br>
+Email: <em>{{$ctrl.data.email}} </em><br>
+Favorite Item: <em>{{$ctrl.data.favItem}} </em><br>
+Phone Number: <em>{{$ctrl.data.phoneNumber}}</em><br>
 
 <hr>
-<div>Items you may like:</div>
-<ul>
+<div><b>Items you like:</b></div>
+<ul style="list-style: none">
   <li ng-repeat="item in $ctrl.menuItems.menu_items">
-    {{ item.name }}: {{item.description}} <br>
+
+    <div class="menu-item-tile col-md-6">
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="menu-item-photo">
+              <div>{{item.name}}</div>
+              <img class="img-responsive" width="250" height="150" ng-src="{{$ctrl.basePath}}/images/{{item.short_name}}.jpg" alt="{{item.name}}">
+            </div>
+            <div class="menu-item-price">{{item.price_small | currency}}<span> {{item.small_portion_name}}</span> {{item.price_large | currency}} <span>{{item.large_portion_name}}</span></div>
+          </div>
+          <div class="menu-item-description col-sm-7">
+            <h3 class="menu-item-title">{{item.name}}</h3>
+            <p class="menu-item-details">{{item.description}}</p>
+          </div>
+        </div>
+        <hr class="visible-xs">
+    </div>
   </li>
 </ul>
+</div>
 

@@ -43,7 +43,7 @@ function routeConfig ($stateProvider) {
     })
 
     .state('public.signup', {
-      url: '/signup',
+      url: '/signup/',
       templateUrl: 'src/public/signup/signup.html',
       controller:'RegistrationController',
       controllerAs:'reg',
@@ -51,7 +51,7 @@ function routeConfig ($stateProvider) {
     })
 
     .state('public.myinfo', {
-      url: '/myinfo/{favItem}',
+      url: '/myinfo/{SignUpService.data.favItem}',
       templateUrl: 'src/public/myinfo/info.html',
       controller: 'InfoController as $ctrl',
 
