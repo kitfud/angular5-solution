@@ -8,7 +8,7 @@
           ng-model="reg.user.firstname"
           required
         >
-          {{reg.user.firstname}}
+         
           <span
             ng-if="(regForm.firstname.$error.required) && regForm.firstname.$touched">
             Enter first name
@@ -19,10 +19,10 @@
           ng-model="reg.user.lastname"
           required
         >
-          {{reg.user.lastname}}
+      
           <span
             ng-if="(regForm.lastname.$error.required) && regForm.lastname.$touched">
-            Enter first name
+            Enter last name
           </span>
           <br>
 
@@ -47,8 +47,12 @@
           <input type="text" name="favitem" placeholder="favorite item"
           ng-model="reg.user.favitem"
          required>
+         <span ng-if="regForm.favitem.$invalid && !regForm.favitem.$touched">Enter your favorite item in short_name format. Example: "DK" if you want to save duck </span>
           <span ng-if="regForm.favitem.$invalid && regForm.favitem.$touched">
-            Must enter a favorite menu item.
+           enter a favorite menu item in short_name format. For example- "DK" for duck.
+          </span>
+          <span style="color:red"; ng-if="reg.item===0 && reg.completed && !regForm.favitem.$invalid ">
+            No such menu number exists!
           </span>
           <br>
 
@@ -58,7 +62,7 @@
           ng-click="reg.submit()">Submit</button>
 
           <div style="margin-top: 10px;">
-            Form valid? {{ regForm.$valid }}
+          Required Fields Filled Before Pressing "Submit" to validate favorite item? {{ regForm.$valid }}
           </div>
       </form>
     </fieldset>
@@ -70,12 +74,12 @@
       Email: {{ reg.user.email}} <br>
       Phone: {{ reg.user.phone }}<br>
 
-      <div> <a ui-sref="public.myinfo({favItem:reg.user.favitem})">Item: {{ reg.user.favitem.toUpperCase()}}</a>
+      <div>Item: {{ reg.user.favitem.toUpperCase()}}
         <span style="color:red"; ng-if="reg.item===0">
           No such menu number exists!
         </span>
         <span style="color:green"; ng-if="reg.item !== 0">
-        Your information has been saved.
+        Your information has been saved. Check the <a ui-sref="public.myinfo({favItem:reg.user.favitem})">"My Info"</a>tab to view w/ pictures and descriptions.
         </span>
     </div>
     
