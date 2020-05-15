@@ -6,7 +6,7 @@
  
     function SignUpService() {
         var service = this;
-        service.data = {};
+     
         return service;
     }
     

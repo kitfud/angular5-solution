@@ -47,12 +47,12 @@
           <input type="text" name="favitem" placeholder="favorite item"
           ng-model="reg.user.favitem"
          required>
-         <span ng-if="regForm.favitem.$invalid && !regForm.favitem.$touched">Enter your favorite item in short_name format. Example: "DK" if you want to save duck </span>
+         <span ng-if="regForm.favitem.$invalid && !regForm.favitem.$touched">Enter your favorite item in short_name format. Example: "L16" if you want to save string beans </span>
           <span ng-if="regForm.favitem.$invalid && regForm.favitem.$touched">
-           enter a favorite menu item in short_name format. For example- "DK" for duck.
+           enter a favorite menu item in short_name format. For example- "L16" for string beans.
           </span>
-          <span style="color:red"; ng-if="reg.item===0 && reg.completed && !regForm.favitem.$invalid ">
-            No such menu number exists!
+          <span style="color:red"; ng-if="reg.item==='does not exist' && reg.completed && !regForm.favitem.$invalid ">
+            No such menu number exists! Try again! 
           </span>
           <br>
 
@@ -75,10 +75,10 @@
       Phone: {{ reg.user.phone }}<br>
 
       <div>Item: {{ reg.user.favitem.toUpperCase()}}
-        <span style="color:red"; ng-if="reg.item===0">
+        <span style="color:red"; ng-if="reg.item==='does not exist'">
           No such menu number exists!
         </span>
-        <span style="color:green"; ng-if="reg.item !== 0">
+        <span style="color:green"; ng-if="reg.item !== 'does not exist'">
         Your information has been saved. Check the <a ui-sref="public.myinfo({favItem:reg.user.favitem})">"My Info"</a>tab to view w/ pictures and descriptions.
         </span>
     </div>

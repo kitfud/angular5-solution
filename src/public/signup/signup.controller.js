@@ -7,38 +7,41 @@
     RegistrationController.$inject=['SignUpService','MenuService']
     function RegistrationController(SignUpService,MenuService) {
       var reg = this;
+      reg.completed = false;
+    
       /*
       var firstName = "";
       var lastName = "";
       var email = "";
-      var favItem = "";
+      var favItem = "&";
       var phoneNumber = "";
       SignUpService.data["firstName"]=firstName;
       SignUpService.data["lastName"]=lastName;
       SignUpService.data["email"]=email;
       SignUpService.data["phoneNumber"]=phoneNumber;
       SignUpService.data["favItem"]=favItem;
-*/
-    
+
+     */
+
      //this is where thing are passed on for another viewState
       reg.submit = function () {
       reg.completed = true;
 
-      var firstName = reg.user.firstname;
-      var lastName = reg.user.lastname;
-      var email = reg.user.email;
-      var favItem = reg.user.favitem;
-      var phoneNumber = reg.user.phone;
-//reg item is what we are using to define the length of the object. if it is 0 then it doesn't exist
-      MenuService.getMenuItem(favItem.toUpperCase()).then(function(response){
-          reg.item = response.menu_items.length;
+    
 
-          if(reg.item>0){
-            SignUpService.data["firstName"]=firstName;
-            SignUpService.data["lastName"]=lastName;
-            SignUpService.data["email"]=email;
-            SignUpService.data["phoneNumber"]=phoneNumber;
-            SignUpService.data["favItem"]=favItem.toUpperCase();
+//reg item is what we are using to define the length of the object. if it is 0 then it doesn't exist
+      MenuService.getMenuItem(reg.user.favitem).then(function(response){
+          reg.item = response;
+          console.log(reg.item)
+          SignUpService.data = {};
+
+          if(reg.item != "does not exist"){
+            SignUpService.data["firstName"]=reg.user.firstname
+            SignUpService.data["lastName"]= reg.user.lastname
+            SignUpService.data["email"]=reg.user.email
+            SignUpService.data["phoneNumber"]=reg.user.phone;
+            SignUpService.data["favItem"]=reg.user.favitem
+            SignUpService.data["signedUp"] = true;
           }
         
         

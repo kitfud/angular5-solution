@@ -2,17 +2,26 @@
     angular.module('common')
     .controller('InfoController', InfoController)
     
-    InfoController.$inject=['SignUpService','menuItems','ApiPath']
-    function InfoController(SignUpService, menuItems,ApiPath) {
+    InfoController.$inject=['SignUpService','ApiPath','$http']
+    function InfoController(SignUpService ,ApiPath,$http) {
       var $ctrl = this;
-      $ctrl.menuItems = menuItems;
-      $ctrl.basePath = ApiPath;
+      $ctrl.data = SignUpService.data
+      
+      console.log($ctrl.data)
 
-      console.log($ctrl.menuItems);
+      function getItemData(item){
+        return $http.get(ApiPath + '/menu_items/'+item+'.json/').then(function (response) {
+          $ctrl.menuItem= response.data;
+        });
+      }
 
-      $ctrl.data = SignUpService.data;
-     
     
+      if($ctrl.data != undefined){
+      $ctrl.menuItem = getItemData($ctrl.data["favItem"])
+      }
+  
+
+   
 
   
     
